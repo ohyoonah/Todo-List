@@ -1,6 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
 
+const TodoTemplate = ({children}) => {
+  return (
+    <TodoTemplateBox>{children}</TodoTemplateBox>
+  )
+}
+
 const TodoTemplateBox = styled.div`
   width: 512px;
   height: 512px;
@@ -9,12 +15,7 @@ const TodoTemplateBox = styled.div`
   border-radius: 16px;
   overflow: hidden;
   background: white;
+  position: relative;
 `
-
-const TodoTemplate = ({children}) => {
-  return (
-    <TodoTemplateBox>{children}</TodoTemplateBox>
-  )
-}
 
 export default TodoTemplate;
