@@ -19,3 +19,8 @@ TodoItem
 
 TodoList
 - TodoItem 목록
+
+styled-component로 스타일 정리
+--> 전역 스타일링
+---> App.js
+----> import { createGlobalStyle } from 'styled-components';
