@@ -1,0 +1,21 @@
+컴포넌트
+
+TodoTemplate
+- todolist 전체적인 틀
+
+TodoHead
+- todolist 타이틀
+- 날짜
+- 남은 리스트 아이템 개수
+
+TodoInsert
+- 새 항목 추가
+- + 버튼 누르면 input 보여지게
+
+TodoItem
+- 각 항목들 하나하나
+- 중요 표시 누르면 최상단 위치하게
+- hover시 삭제 버튼, 별표 버튼 노출
+
+TodoList
+- TodoItem 목록
