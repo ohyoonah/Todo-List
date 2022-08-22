@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import TodoTemplate from './components/TodoTemplate';
 import TodoHead from './components/TodoHead';
 import TodoInsert from './components/TodoInsert';
+import TodoList from './components/TodoList';
 import { createGlobalStyle } from 'styled-components';
 
 function App() {
@@ -11,6 +12,7 @@ function App() {
       <TodoTemplate>
         <TodoHead />
         <TodoInsert />
+        <TodoList />
       </TodoTemplate>
     </div>
   );
