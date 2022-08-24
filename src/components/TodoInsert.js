@@ -1,20 +1,32 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import styled, { css } from 'styled-components';
 import { MdAdd } from 'react-icons/md';
 
 const TodoInsert = () => {
   const [visible, setVisible] = useState(false);
+  const [inputValue, setInputValue] = useState('');
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    setInputValue('');
+  }
 
   const onClick = () => {
     setVisible(!visible);
   }
 
+  const onChange = useCallback(e => {
+    setInputValue(e.target.value);
+  }, []);
+
   return (
-    <InsertForm>
+    <InsertForm onSubmit={onSubmit}>
       {visible &&
         <InsertInput 
           autoFocus
           placeholder='할 일 입력 후 Enter' 
+          value={inputValue}
+          onChange={onChange}
         />
       }
       <AddButton type="button" onClick={onClick} visible={visible}>

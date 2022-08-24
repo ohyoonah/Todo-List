@@ -1,9 +1,29 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
+import TodoHead from './TodoHead';
+import TodoInsert from './TodoInsert';
+import TodoList from './TodoList';
 
 const TodoTemplate = ({children}) => {
+  const [todos, setTodos] = useState([
+    {
+      id: 1,
+      text: 'text',
+      checked: true,
+    },
+    {
+      id: 2,
+      text: 'text',
+      checked: false,
+    },
+  ]);
+
   return (
-    <TodoTemplateBox>{children}</TodoTemplateBox>
+    <TodoTemplateBox>
+      <TodoHead />
+      <TodoInsert />
+      <TodoList todos={todos} />
+    </TodoTemplateBox>
   )
 }
 

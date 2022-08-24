@@ -1,19 +1,12 @@
 import React from 'react';
 import TodoTemplate from './components/TodoTemplate';
-import TodoHead from './components/TodoHead';
-import TodoInsert from './components/TodoInsert';
-import TodoList from './components/TodoList';
 import { createGlobalStyle } from 'styled-components';
 
 function App() {
   return (
     <div className="App">
       <GlobalStyle />
-      <TodoTemplate>
-        <TodoHead />
-        <TodoInsert />
-        <TodoList />
-      </TodoTemplate>
+      <TodoTemplate />
     </div>
   );
 }
