@@ -10,15 +10,6 @@ const TodoItem = ({todo}) => {
   const {id, text, checked} = todo;
 
   return (
-    // <TodoItemBox>
-    //   <div className='checkBox'>
-    //     <MdCheckBoxOutlineBlank />
-    //     <div className='itemText'>text</div>
-    //   </div>
-    //   <div className='remove'>
-    //     <MdRemoveCircleOutline />
-    //   </div>
-    // </TodoItemBox>
     <TodoItemBox>
       <div className='checkBox'>
         {checked ? (

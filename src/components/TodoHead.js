@@ -18,7 +18,7 @@ const TodoHead = () => {
         <h1>{dateString}</h1>
         <div className='day'>{dayName}</div>
       </div>
-      <TasksLeft>0 Tasks</TasksLeft>
+      <TasksBox>0 Tasks</TasksBox>
     </TodoHeadBox>
   )
 }
@@ -39,10 +39,9 @@ const TodoHeadBox = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  flex: 1;
 `;
 
-const TasksLeft = styled.div`
+const TasksBox = styled.div`
   color: var(--blue-gray);
   font-size: 16px;
   font-weight: bold;

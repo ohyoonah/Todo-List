@@ -17,6 +17,7 @@ const TodoList = ({todos}) => {
 
 const TodoListBox = styled.div`
   overflow-y: auto;
+  height: 100%;
 `
 
 export default TodoList;
