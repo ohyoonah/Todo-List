@@ -18,6 +18,14 @@ const TodoTemplate = () => {
     nextId.current += 1;
   };
 
+  const onToggle = (id) => {
+    setTodos(todos.map((todo) => {
+      // 특정 id를 가지고 있는 객체의 checked 값 반전
+      // 특정 배열 원소를 업데이트해야 할 때 map 사용
+      return todo.id === id ? { ...todo, checked: !todo.checked } : todo;
+    }));
+  };
+
   const onRemove = (id) => {
     // id를 파라미터로 받아와 같은 id를 가진 항목을 todos 배열에서 삭제
     // filter 함수로 todo.id와 id가 일치하지 않는 것들만 반환..?! (삭제되고 나머지 것들만??)
@@ -28,7 +36,7 @@ const TodoTemplate = () => {
     <TodoTemplateBox>
       <TodoHead />
       <TodoInsert onInsert={onInsert} />
-      <TodoList todos={todos} onRemove={onRemove} />
+      <TodoList todos={todos} onRemove={onRemove} onToggle={onToggle}/>
     </TodoTemplateBox>
   )
 }
