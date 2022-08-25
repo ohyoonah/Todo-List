@@ -6,7 +6,7 @@ import {
   MdRemoveCircleOutline,
  } from 'react-icons/md';
 
-const TodoItem = ({todo}) => {
+const TodoItem = ({todo, onRemove}) => {
   const {id, text, checked} = todo;
 
   return (
@@ -25,7 +25,7 @@ const TodoItem = ({todo}) => {
         )}
       </div>
       <TodoItemRemove>
-        <MdRemoveCircleOutline />
+        <MdRemoveCircleOutline onClick={() => onRemove(id)}/>
       </TodoItemRemove>
       
     </TodoItemBox>
@@ -35,7 +35,7 @@ const TodoItem = ({todo}) => {
 const TodoItemBox = styled.div`
   display: flex;
   align-items: center;
-  padding: 0 3rem;
+  padding: 0 4rem;
   margin: 30px 0;
 
   .check {
@@ -47,16 +47,19 @@ const TodoItemBox = styled.div`
     flex: 1;
     display: flex;
     align-items: center;
-    font-size: 28px;
+    font-size: 25px;
+    color: var(--black);
     .itemCheckText {
       flex: 1;
       margin-left: 1rem;
       text-decoration: line-through;
       color: var(--blue-gray);
+      font-size: 20px;
     }
     .itemText {
       flex: 1;
       margin-left: 1rem;
+      font-size: 20px;
     }
   }
 `
