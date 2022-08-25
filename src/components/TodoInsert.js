@@ -2,12 +2,16 @@ import React, { useState, useCallback } from 'react';
 import styled, { css } from 'styled-components';
 import { MdAdd } from 'react-icons/md';
 
-const TodoInsert = () => {
+const TodoInsert = ({onInsert}) => {
   const [visible, setVisible] = useState(false);
   const [inputValue, setInputValue] = useState('');
 
-  const onSubmit = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
+    //inputValue에 값이 없으면 return
+    if (!inputValue) return;
+    onInsert(inputValue);
+    //input박스 값 초기화
     setInputValue('');
   }
 
@@ -20,7 +24,7 @@ const TodoInsert = () => {
   }, []);
 
   return (
-    <InsertForm onSubmit={onSubmit}>
+    <InsertForm onSubmit={handleSubmit}>
       {visible &&
         <InsertInput 
           autoFocus
