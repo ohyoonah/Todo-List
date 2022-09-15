@@ -4,10 +4,12 @@ import {
   MdCheckBoxOutlineBlank,
   MdCheckBox,
   MdRemoveCircleOutline,
+  MdOutlineStarOutline,
+  MdOutlineStarPurple500
  } from 'react-icons/md';
 
-const TodoItem = ({todo, onRemove, onToggle}) => {
-  const {id, text, checked} = todo;
+const TodoItem = ({todo, onRemove, onToggle, onImportant}) => {
+  const {id, text, checked, important} = todo;
 
   return (
     <TodoItemBox>
@@ -24,6 +26,15 @@ const TodoItem = ({todo, onRemove, onToggle}) => {
           </>
         )}
       </div>
+      <TodoImportant>
+        <div className='checkStar' onClick={() => onImportant(id)}>
+          {important ? (
+            <MdOutlineStarPurple500 className='fullStar' />
+          ) : (
+            <MdOutlineStarOutline className='emptyStar' />
+          )}
+        </div>
+      </TodoImportant>
       <TodoItemRemove>
         <MdRemoveCircleOutline onClick={() => onRemove(id)}/>
       </TodoItemRemove>
@@ -70,6 +81,18 @@ const TodoItemRemove = styled.div`
   align-items: center;
   font-size: 28px;
   color: var(--red);
+`
+
+const TodoImportant = styled.div`
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  font-size: 28px;
+  margin-right: 5px;
+
+  .fullStar {
+    color: yellow;
+  }
 `
 
 export default TodoItem;

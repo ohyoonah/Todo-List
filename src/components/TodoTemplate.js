@@ -12,7 +12,8 @@ const TodoTemplate = () => {
     const todo = {
       id: nextId.current,
       text,
-      checked: false
+      checked: false,
+      important: false
     };
     setTodos(todos.concat(todo));
     nextId.current += 1;
@@ -32,11 +33,22 @@ const TodoTemplate = () => {
     setTodos(todos.filter((todo) => todo.id !== id));
   };
 
+  const onImportant = (id) => {
+    setTodos(todos.map((todo) => {
+      return todo.id === id ? { ...todo, important: !todo.important } : todo;
+    }));
+  }
+
   return (
     <TodoTemplateBox>
       <TodoHead />
       <TodoInsert onInsert={onInsert} />
-      <TodoList todos={todos} onRemove={onRemove} onToggle={onToggle}/>
+      <TodoList 
+        todos={todos} 
+        onRemove={onRemove} 
+        onToggle={onToggle} 
+        onImportant={onImportant}
+      />
     </TodoTemplateBox>
   )
 }

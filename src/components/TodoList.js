@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import TodoItem from './TodoItem.js';
 
-const TodoList = ({todos, onToggle, onRemove}) => {
+const TodoList = ({todos, onToggle, onRemove, onImportant}) => {
   return (
     <TodoListBox>
       {todos.map((todo) => (
@@ -11,6 +11,7 @@ const TodoList = ({todos, onToggle, onRemove}) => {
           todo={todo}
           onToggle={onToggle}
           onRemove={onRemove}
+          onImportant={onImportant}
         />
       ))}
     </TodoListBox>
