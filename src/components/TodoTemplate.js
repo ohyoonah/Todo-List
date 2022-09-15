@@ -39,9 +39,11 @@ const TodoTemplate = () => {
     }));
   }
 
+  const task = todos.filter((todo) => !todo.checked).length;
+
   return (
     <TodoTemplateBox>
-      <TodoHead />
+      <TodoHead task={task}/>
       <TodoInsert onInsert={onInsert} />
       <TodoList 
         todos={todos} 

@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const TodoHead = () => {
+const TodoHead = ({task}) => {
   const today = new Date();
 
   const dateString = today.toLocaleDateString('ko-KR', {
@@ -18,7 +18,7 @@ const TodoHead = () => {
         <h1>{dateString}</h1>
         <div className='day'>{dayName}</div>
       </div>
-      <TasksBox>0 Tasks</TasksBox>
+      <TasksBox>{task} Tasks</TasksBox>
     </TodoHeadBox>
   )
 }
