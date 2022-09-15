@@ -91,7 +91,7 @@ const AddButton = styled.button`
       background: var(--red);
       transform: rotate(45deg);
       &:hover {
-        background: #ff8787;
+        background: var(--light-red);
       }
     `
   }

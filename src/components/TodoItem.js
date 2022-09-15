@@ -5,10 +5,11 @@ import {
   MdCheckBox,
   MdRemoveCircleOutline,
   MdOutlineStarOutline,
-  MdOutlineStarPurple500
+  MdOutlineStarPurple500,
+  MdModeEditOutline
  } from 'react-icons/md';
 
-const TodoItem = ({todo, onRemove, onToggle, onImportant}) => {
+const TodoItem = ({onChangeSelectedTodo, todo, onRemove, onToggle, onImportant, setIsEdit}) => {
   const {id, text, checked, important} = todo;
 
   return (
@@ -35,10 +36,15 @@ const TodoItem = ({todo, onRemove, onToggle, onImportant}) => {
           )}
         </div>
       </TodoImportant>
+      <TodoItemEdit onClick={() => {
+        onChangeSelectedTodo(todo);
+        setIsEdit(true);
+        }}
+      ><MdModeEditOutline />
+      </TodoItemEdit>
       <TodoItemRemove>
         <MdRemoveCircleOutline onClick={() => onRemove(id)}/>
       </TodoItemRemove>
-      
     </TodoItemBox>
   )
 }
@@ -75,12 +81,21 @@ const TodoItemBox = styled.div`
   }
 `
 
+const TodoItemEdit = styled.div`
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  font-size: 28px;
+  margin-right: 5px;
+  color: var(--blue-gray);
+`
+
 const TodoItemRemove = styled.div`
   cursor: pointer;
   display: flex;
   align-items: center;
   font-size: 28px;
-  color: var(--red);
+  color: var(--light-red);
 `
 
 const TodoImportant = styled.div`
@@ -91,7 +106,7 @@ const TodoImportant = styled.div`
   margin-right: 5px;
 
   .fullStar {
-    color: yellow;
+    color: var(--yellow);
   }
 `
 

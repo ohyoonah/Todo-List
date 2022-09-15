@@ -18,6 +18,8 @@ const GlobalStyle = createGlobalStyle`
     --light-gray: #d9e1e8;
     --blue: #2b90d9;
     --red: #f1404b;
+    --light-red: #ff8787;
+    --yellow: #ffde00;
   }
   body {
     background: var(--light-gray);

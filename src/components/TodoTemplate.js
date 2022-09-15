@@ -3,9 +3,17 @@ import styled from 'styled-components';
 import TodoHead from './TodoHead';
 import TodoInsert from './TodoInsert';
 import TodoList from './TodoList';
+import TodoEdit from './TodoEdit';
 
 const TodoTemplate = () => {
   const [todos, setTodos] = useState([]);
+  const [isEdit, setIsEdit] = useState(false);
+  const [newText, setNewText] = useState(null);
+
+  const onChangeSelectedTodo = (todo) => {
+    setNewText(todo);
+  };
+
   const nextId = useRef(0);
 
   const onInsert = (text) => {
@@ -20,11 +28,11 @@ const TodoTemplate = () => {
   };
 
   const onToggle = (id) => {
-    setTodos(todos.map((todo) => {
+    setTodos(todos.map((todo) => (
       // 특정 id를 가지고 있는 객체의 checked 값 반전
       // 특정 배열 원소를 업데이트해야 할 때 map 사용
-      return todo.id === id ? { ...todo, checked: !todo.checked } : todo;
-    }));
+      todo.id === id ? { ...todo, checked: !todo.checked } : todo
+    )));
   };
 
   const onRemove = (id) => {
@@ -34,10 +42,13 @@ const TodoTemplate = () => {
   };
 
   const onImportant = (id) => {
-    setTodos(todos.map((todo) => {
-      return todo.id === id ? { ...todo, important: !todo.important } : todo;
-    }));
+    setTodos(todos.map((todo) => (todo.id === id ? { ...todo, important: !todo.important } : todo)));
   }
+
+  const onUpdate = (id, text) => {
+    setTodos(todos.map((todo) => (todo.id === id ? { ...todo, text } : todo)));
+    setIsEdit(false);
+  };
 
   const task = todos.filter((todo) => !todo.checked).length;
 
@@ -50,7 +61,16 @@ const TodoTemplate = () => {
         onRemove={onRemove} 
         onToggle={onToggle} 
         onImportant={onImportant}
+        setIsEdit={setIsEdit}
+        onChangeSelectedTodo={onChangeSelectedTodo}
       />
+      {isEdit && 
+        <TodoEdit 
+          setIsEdit={setIsEdit}
+          newText={newText}
+          onUpdate={onUpdate}
+        />
+      }
     </TodoTemplateBox>
   )
 }
