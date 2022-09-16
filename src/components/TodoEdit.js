@@ -1,48 +1,73 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
-const EditForm = styled.div`
-  form {
-    background: white;
-    border: 5px solid var(--light-gray);
-    width: 60%;
-    height: 50%;
+const EditForm = styled.form`
+  background: white;
+  width: 70%;
+  height: 50%;
+  border-radius: 16px;
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  left: 50%;
+  transform:translate(-50%, -50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: var(--black);
+  box-shadow: 8px 8px 15px var(--black);
+
+  h2 {
+    border-radius: 16px 16px 0 0;
     position: absolute;
-    z-index: 1;
-    top: 50%;
-    left: 50%;
-    transform:translate(-50%, -50%);
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    top: 0;
+    font-size: 1.8rem;
+    font-weight: 700;
+    background-color: var(--blue-gray);
+    width: 100%;
+    height: 60px;
+    line-height: 60px;
   }
   
   input {
-    background: var(--light-gray);
     border: none;
     outline: none;
+    border-bottom: 5px solid var(--light-gray);
     width: 80%;
     height: 40px;
     font-size: 1.2rem;
-    padding-left: 10px;
+    padding-left: 1rem;
   }
 
-  .buttonBox {
+  div {
     position: absolute;
     bottom: 0;
     width: 100%;
+    height: 60px;
     display: flex;
-    .updateButton,
-    .closeButton {
+    .updateButton {
+      font-weight: 700;
+      border-radius: 0 0 0 16px;
       cursor: pointer;
-      background: var(--light-gray);
+      background: var(--blue-gray);
       border: none;
       flex: 1;
-      /* width: 50%; */
-      height: 40px;
       font-size: 1rem;
       &:hover {
-        background: var(--blue-gray);
+        background: var(--light-gray);
+      }
+    }
+    .closeButton {
+      font-weight: 700;
+      border-radius: 0 0 16px 0;
+      cursor: pointer;
+      background: var(--blue-gray);
+      border: none;
+      flex: 1;
+      font-size: 1rem;
+      &:hover {
+        background: var(--light-gray);
       }
     }
   }
@@ -66,14 +91,13 @@ const TodoEdit = ({setIsEdit, newText, onUpdate}) => {
   }
 
   return (
-    <EditForm>
-      <form onSubmit={onSubmit}>
-        <input value={inputValue} onChange={onChange} autoFocus/>
-        <div className='buttonBox'>
-          <button className='updateButton' type='submit'>확인</button>
-          <button className='closeButton' onClick={() => setIsEdit(prev => !prev)}>닫기</button>
-        </div>
-      </form>
+    <EditForm onSubmit={onSubmit}>
+      <h2>할 일 수정</h2>
+      <input value={inputValue} onChange={onChange} autoFocus/>
+      <div>
+        <button className='updateButton' type='submit'>확인</button>
+        <button className='closeButton' onClick={() => setIsEdit(prev => !prev)}>닫기</button>
+      </div>
     </EditForm>
   )
 }

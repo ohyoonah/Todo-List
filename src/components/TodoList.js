@@ -2,6 +2,13 @@ import React from 'react';
 import styled from 'styled-components';
 import TodoItem from './TodoItem.js';
 
+const TodoListBox = styled.div`
+  overflow-y: auto;
+  height: 100vh;
+  margin-top: 3rem;
+  padding: 0 3rem;
+`
+
 const TodoList = ({onChangeSelectedTodo, todos, onToggle, onRemove, onImportant, setIsEdit}) => {
   return (
     <TodoListBox>
@@ -19,11 +26,5 @@ const TodoList = ({onChangeSelectedTodo, todos, onToggle, onRemove, onImportant,
     </TodoListBox>
   )
 }
-
-const TodoListBox = styled.div`
-  overflow-y: auto;
-  height: 100%;
-  margin-top: 10px;
-`
 
 export default TodoList;

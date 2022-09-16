@@ -1,6 +1,32 @@
 import React from 'react';
 import styled from 'styled-components';
 
+const TodoHeadBox = styled.div`
+  padding: 2rem;
+  border-bottom: 1px solid var(--light-gray);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  h1 {
+    font-size: 1.7rem;
+    font-weight: 600;
+    color: var(--black);
+  }
+
+  p {
+    font-size: 1.2rem;
+    margin-top: 15px;
+    color: var(--black);
+  }
+
+  .task {
+    color: var(--blue-gray);
+    font-size: 1.2rem;
+    font-weight: 600;
+  }
+`;
+
 const TodoHead = ({task}) => {
   const today = new Date();
 
@@ -16,35 +42,11 @@ const TodoHead = ({task}) => {
     <TodoHeadBox>
       <div>
         <h1>{dateString}</h1>
-        <div className='day'>{dayName}</div>
+        <p>{dayName}</p>
       </div>
-      <TasksBox>{task} Tasks</TasksBox>
+      <div className='task'>{task} Tasks</div>
     </TodoHeadBox>
   )
 }
-
-const TodoHeadBox = styled.div`
-  h1 {
-    margin: 0;
-    font-size: 28px;
-    color: var(--black);
-  }
-  .day {
-    margin-top: 10px;
-    color: var(--black);
-    font-size: 18px;
-  }
-  padding: 32px 32px 24px 32px;
-  border-bottom: 1px solid #e9ecef;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-`;
-
-const TasksBox = styled.div`
-  color: var(--blue-gray);
-  font-size: 16px;
-  font-weight: bold;
-`;
 
 export default TodoHead;
