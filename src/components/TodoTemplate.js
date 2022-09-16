@@ -4,11 +4,25 @@ import TodoHead from './TodoHead';
 import TodoInsert from './TodoInsert';
 import TodoList from './TodoList';
 import TodoEdit from './TodoEdit';
+import { useEffect } from 'react';
 
 const TodoTemplate = () => {
-  const [todos, setTodos] = useState([]);
+  const getLocalStorage = () => {
+    let todos = localStorage.getItem('todos');
+    if(todos) {
+      return (todos = JSON.parse(localStorage.getItem('todos')))
+    } else {
+      return [];
+    }
+  }
+
+  const [todos, setTodos] = useState(getLocalStorage());
   const [isEdit, setIsEdit] = useState(false);
   const [newText, setNewText] = useState(null);
+  
+  useEffect(() => {
+    localStorage.setItem('todos', JSON.stringify(todos))
+  }, [todos]);
 
   const onChangeSelectedTodo = (todo) => {
     setNewText(todo);
@@ -26,6 +40,8 @@ const TodoTemplate = () => {
     setTodos(todos.concat(todo));
     nextId.current += 1;
   };
+
+  console.log(JSON.stringify(todos));
 
   const onToggle = (id) => {
     setTodos(todos.map((todo) => (
