@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { 
   MdCheckBoxOutlineBlank,
   MdCheckBox,
@@ -13,6 +13,14 @@ import {
   display: flex;
   align-items: center;
   margin-bottom: 1.3rem;
+
+  ${props => 
+    props.important &&
+    css`
+      order: -1;
+      font-weight: 600;
+    `
+  }
 
   .checkBox {
     cursor: pointer;
@@ -69,7 +77,7 @@ const TodoItem = ({onChangeSelectedTodo, todo, onRemove, onToggle, onImportant, 
   const {id, text, checked, important} = todo;
 
   return (
-    <TodoItemBox>
+    <TodoItemBox important={important}>
       <div className='checkBox' onClick={() => onToggle(id)}>
         {checked ? (
           <>
