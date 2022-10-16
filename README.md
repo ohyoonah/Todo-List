@@ -4,7 +4,7 @@
 
 🔗 [블로그 기술 정리](https://ohyoonah.github.io/project/2022-09-18-todolist/)
 
-🔗 [사이트](https://ohyoonah.github.io/Todo-List/)
+🔗 [배포 사이트](https://ohyoonah.github.io/Todo-List/)
 
 <br>
 
