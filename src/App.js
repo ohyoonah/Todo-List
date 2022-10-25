@@ -1,6 +1,5 @@
-import React from 'react';
-import TodoTemplate from './components/TodoTemplate';
-import GlobalStyle from './style/GlobalStyle';
+import TodoTemplate from "./components/TodoTemplate";
+import GlobalStyle from "./style/GlobalStyle";
 
 const App = () => {
   return (
@@ -9,6 +8,6 @@ const App = () => {
       <TodoTemplate />
     </div>
   );
-}
+};
 
 export default App;

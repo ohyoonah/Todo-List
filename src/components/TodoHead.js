@@ -1,5 +1,4 @@
-import React from 'react';
-import styled from 'styled-components';
+import styled from "styled-components";
 
 const TodoHeadBox = styled.div`
   padding: 2rem;
@@ -27,16 +26,16 @@ const TodoHeadBox = styled.div`
   }
 `;
 
-const TodoHead = ({task}) => {
+const TodoHead = ({ task }) => {
   const today = new Date();
 
-  const dateString = today.toLocaleDateString('ko-KR', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric'
+  const dateString = today.toLocaleDateString("ko-KR", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
   });
 
-  const dayName = today.toLocaleDateString('ko-KR', { weekday: 'long' });
+  const dayName = today.toLocaleDateString("ko-KR", { weekday: "long" });
 
   return (
     <TodoHeadBox>
@@ -44,9 +43,9 @@ const TodoHead = ({task}) => {
         <h1>{dateString}</h1>
         <p>{dayName}</p>
       </div>
-      <div className='task'>{task} Tasks</div>
+      <div className="task">{task} Tasks</div>
     </TodoHeadBox>
-  )
-}
+  );
+};
 
 export default TodoHead;

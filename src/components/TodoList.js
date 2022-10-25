@@ -1,19 +1,25 @@
-import React from 'react';
-import styled from 'styled-components';
-import TodoItem from './TodoItem.js';
+import styled from "styled-components";
+import TodoItem from "./TodoItem.js";
 
 const TodoListBox = styled.div`
   overflow-y: auto;
   height: 100vh;
   margin-top: 3rem;
   padding: 0 3rem;
-`
+`;
 
-const TodoList = ({onChangeSelectedTodo, todos, onToggle, onRemove, onImportant, setIsEdit}) => {
+const TodoList = ({
+  onChangeSelectedTodo,
+  todos,
+  onToggle,
+  onRemove,
+  onImportant,
+  setIsEdit,
+}) => {
   return (
     <TodoListBox>
       {todos.map((todo) => (
-        <TodoItem 
+        <TodoItem
           key={todo.id}
           todo={todo}
           onToggle={onToggle}
@@ -24,7 +30,7 @@ const TodoList = ({onChangeSelectedTodo, todos, onToggle, onRemove, onImportant,
         />
       ))}
     </TodoListBox>
-  )
-}
+  );
+};
 
 export default TodoList;

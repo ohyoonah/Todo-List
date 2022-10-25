@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import styled from 'styled-components';
+import { useState, useEffect } from "react";
+import styled from "styled-components";
 
 const EditForm = styled.form`
   background: white;
@@ -10,7 +10,7 @@ const EditForm = styled.form`
   z-index: 1;
   top: 50%;
   left: 50%;
-  transform:translate(-50%, -50%);
+  transform: translate(-50%, -50%);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -29,7 +29,7 @@ const EditForm = styled.form`
     height: 60px;
     line-height: 60px;
   }
-  
+
   input {
     border: none;
     outline: none;
@@ -71,10 +71,10 @@ const EditForm = styled.form`
       }
     }
   }
-`
+`;
 
-const TodoEdit = ({setIsEdit, newText, onUpdate}) => {
-  const [inputValue, setInputValue] = useState('');
+const TodoEdit = ({ setIsEdit, newText, onUpdate }) => {
+  const [inputValue, setInputValue] = useState("");
 
   useEffect(() => {
     setInputValue(newText.text);
@@ -82,24 +82,31 @@ const TodoEdit = ({setIsEdit, newText, onUpdate}) => {
 
   const onChange = (e) => {
     setInputValue(e.target.value);
-  }
+  };
 
   const onSubmit = (e) => {
     e.preventDefault();
     onUpdate(newText.id, inputValue);
-    setInputValue('');
-  }
+    setInputValue("");
+  };
 
   return (
     <EditForm onSubmit={onSubmit}>
       <h2>할 일 수정</h2>
-      <input value={inputValue} onChange={onChange} autoFocus/>
+      <input value={inputValue} onChange={onChange} autoFocus />
       <div>
-        <button className='updateButton' type='submit'>확인</button>
-        <button className='closeButton' onClick={() => setIsEdit(prev => !prev)}>닫기</button>
+        <button className="updateButton" type="submit">
+          확인
+        </button>
+        <button
+          className="closeButton"
+          onClick={() => setIsEdit((prev) => !prev)}
+        >
+          닫기
+        </button>
       </div>
     </EditForm>
-  )
-}
+  );
+};
 
 export default TodoEdit;

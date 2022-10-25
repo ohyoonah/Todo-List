@@ -1,10 +1,10 @@
-import React, { useState, useCallback } from 'react';
-import styled, { css } from 'styled-components';
-import { MdAdd } from 'react-icons/md';
+import { useState, useCallback } from "react";
+import styled, { css } from "styled-components";
+import { MdAdd } from "react-icons/md";
 
 const InsertForm = styled.form`
   display: flex;
-`
+`;
 
 const InsertInput = styled.input`
   background: var(--light-gray);
@@ -18,7 +18,7 @@ const InsertInput = styled.input`
   &::placeholder {
     color: white;
   }
-`
+`;
 
 const AddButton = styled.button`
   background: var(--blue);
@@ -42,12 +42,12 @@ const AddButton = styled.button`
     background: var(--blue-gray);
   }
 
-  &:active{
+  &:active {
     background: var(--red);
     transform: rotate(50deg);
   }
 
-  ${props =>
+  ${(props) =>
     props.visible &&
     css`
       background: var(--red);
@@ -55,46 +55,43 @@ const AddButton = styled.button`
       &:hover {
         background: var(--light-red);
       }
-    `
-  }
-`
+    `}
+`;
 
-const TodoInsert = ({onInsert}) => {
+const TodoInsert = ({ onInsert }) => {
   const [visible, setVisible] = useState(false);
-  const [inputValue, setInputValue] = useState('');
+  const [inputValue, setInputValue] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    //inputValue에 값이 없으면 return
     if (!inputValue) return;
     onInsert(inputValue);
-    //input박스 값 초기화
-    setInputValue('');
-  }
+    setInputValue("");
+  };
 
   const onClick = () => {
     setVisible(!visible);
-  }
+  };
 
-  const onChange = useCallback(e => {
+  const onChange = useCallback((e) => {
     setInputValue(e.target.value);
   }, []);
 
   return (
     <InsertForm onSubmit={handleSubmit}>
-      {visible &&
-        <InsertInput 
+      {visible && (
+        <InsertInput
           autoFocus
-          placeholder='할 일 입력 후 Enter' 
+          placeholder="할 일 입력 후 Enter"
           value={inputValue}
           onChange={onChange}
         />
-      }
+      )}
       <AddButton type="button" onClick={onClick} visible={visible}>
         <MdAdd />
       </AddButton>
     </InsertForm>
-  )
-}
+  );
+};
 
 export default TodoInsert;

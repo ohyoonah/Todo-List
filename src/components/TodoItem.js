@@ -1,26 +1,24 @@
-import React from 'react';
-import styled, { css } from 'styled-components';
-import { 
+import styled, { css } from "styled-components";
+import {
   MdCheckBoxOutlineBlank,
   MdCheckBox,
   MdRemoveCircleOutline,
   MdOutlineStarOutline,
   MdOutlineStar,
-  MdModeEditOutline
- } from 'react-icons/md';
+  MdModeEditOutline,
+} from "react-icons/md";
 
- const TodoItemBox = styled.div`
+const TodoItemBox = styled.div`
   display: flex;
   align-items: center;
   margin-bottom: 1.3rem;
 
-  ${props => 
+  ${(props) =>
     props.important &&
     css`
       order: -1;
       font-weight: 600;
-    `
-  }
+    `}
 
   .checkBox {
     cursor: pointer;
@@ -43,7 +41,7 @@ import {
       color: var(--blue-gray);
     }
   }
-`
+`;
 
 const TodoImportant = styled.div`
   cursor: pointer;
@@ -52,7 +50,7 @@ const TodoImportant = styled.div`
   font-size: 1.8rem;
   margin-right: 0.8rem;
   color: var(--yellow);
-`
+`;
 
 const TodoItemEdit = styled.div`
   cursor: pointer;
@@ -61,7 +59,7 @@ const TodoItemEdit = styled.div`
   font-size: 1.8rem;
   margin-right: 0.8rem;
   color: var(--blue-gray);
-`
+`;
 
 const TodoItemRemove = styled.div`
   cursor: pointer;
@@ -69,19 +67,24 @@ const TodoItemRemove = styled.div`
   align-items: center;
   font-size: 1.8rem;
   color: var(--light-red);
-`
+`;
 
-
-
-const TodoItem = ({onChangeSelectedTodo, todo, onRemove, onToggle, onImportant, setIsEdit}) => {
-  const {id, text, checked, important} = todo;
+const TodoItem = ({
+  onChangeSelectedTodo,
+  todo,
+  onRemove,
+  onToggle,
+  onImportant,
+  setIsEdit,
+}) => {
+  const { id, text, checked, important } = todo;
 
   return (
     <TodoItemBox important={important}>
-      <div className='checkBox' onClick={() => onToggle(id)}>
+      <div className="checkBox" onClick={() => onToggle(id)}>
         {checked ? (
           <>
-            <MdCheckBox className='check' />
+            <MdCheckBox className="check" />
             <div className="itemCheckText">{text}</div>
           </>
         ) : (
@@ -92,23 +95,21 @@ const TodoItem = ({onChangeSelectedTodo, todo, onRemove, onToggle, onImportant, 
         )}
       </div>
       <TodoImportant onClick={() => onImportant(id)}>
-        {important ? (
-          <MdOutlineStar />
-        ) : (
-          <MdOutlineStarOutline />
-        )}
+        {important ? <MdOutlineStar /> : <MdOutlineStarOutline />}
       </TodoImportant>
-      <TodoItemEdit onClick={() => {
-        onChangeSelectedTodo(todo);
-        setIsEdit(true);
+      <TodoItemEdit
+        onClick={() => {
+          onChangeSelectedTodo(todo);
+          setIsEdit(true);
         }}
-      ><MdModeEditOutline />
+      >
+        <MdModeEditOutline />
       </TodoItemEdit>
       <TodoItemRemove>
-        <MdRemoveCircleOutline onClick={() => onRemove(id)}/>
+        <MdRemoveCircleOutline onClick={() => onRemove(id)} />
       </TodoItemRemove>
     </TodoItemBox>
-  )
-}
+  );
+};
 
 export default TodoItem;

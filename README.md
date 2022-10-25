@@ -1,10 +1,10 @@
 ## 📝 Todo List
 
-데이터의 삽입, 삭제, 수정, 저장이 가능한 일정 관리 애플리케이션
+데이터의 삽입, 삭제, 수정, 저장이 가능한 일정 관리 애플리케이션 입니다.
 
 🔗 [블로그 기술 정리](https://ohyoonah.github.io/project/2022-09-18-todolist/)
 
-🔗 [배포 사이트](https://ohyoonah.github.io/Todo-List/)
+🔗 [배포 사이트](https://ohyoonah.github.io/todo_list/)
 
 <br>
 
