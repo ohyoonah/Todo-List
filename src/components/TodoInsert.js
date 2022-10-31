@@ -47,8 +47,8 @@ const AddButton = styled.button`
     transform: rotate(50deg);
   }
 
-  ${(props) =>
-    props.visible &&
+  ${({ visible }) =>
+    visible &&
     css`
       background: var(--red);
       transform: rotate(45deg);

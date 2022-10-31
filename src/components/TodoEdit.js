@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import styled from "styled-components";
 
 const EditForm = styled.form`
@@ -74,11 +74,7 @@ const EditForm = styled.form`
 `;
 
 const TodoEdit = ({ setIsEdit, newText, onUpdate }) => {
-  const [inputValue, setInputValue] = useState("");
-
-  useEffect(() => {
-    setInputValue(newText.text);
-  }, [newText]);
+  const [inputValue, setInputValue] = useState(newText.text);
 
   const onChange = (e) => {
     setInputValue(e.target.value);
@@ -87,7 +83,6 @@ const TodoEdit = ({ setIsEdit, newText, onUpdate }) => {
   const onSubmit = (e) => {
     e.preventDefault();
     onUpdate(newText.id, inputValue);
-    setInputValue("");
   };
 
   return (
@@ -98,10 +93,7 @@ const TodoEdit = ({ setIsEdit, newText, onUpdate }) => {
         <button className="updateButton" type="submit">
           확인
         </button>
-        <button
-          className="closeButton"
-          onClick={() => setIsEdit((prev) => !prev)}
-        >
+        <button className="closeButton" onClick={() => setIsEdit(false)}>
           닫기
         </button>
       </div>

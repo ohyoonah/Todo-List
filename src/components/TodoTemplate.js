@@ -18,8 +18,8 @@ const TodoTemplateBox = styled.div`
 `;
 
 const TodoMainStyle = styled.div`
-  ${(props) =>
-    props.isEdit &&
+  ${({ isEdit }) =>
+    isEdit &&
     css`
       opacity: 0.2;
       background-color: rgba(0, 0, 0, 0.5);
@@ -27,18 +27,18 @@ const TodoMainStyle = styled.div`
 `;
 
 const TodoTemplate = () => {
-  const getLocalStorage = () => {
+  const [todos, setTodos] = useState(getLocalStorage());
+  const [isEdit, setIsEdit] = useState(false);
+  const [newText, setNewText] = useState(null);
+
+  function getLocalStorage() {
     let todos = localStorage.getItem("todos");
     if (todos) {
       return (todos = JSON.parse(localStorage.getItem("todos")));
     } else {
       return [];
     }
-  };
-
-  const [todos, setTodos] = useState(getLocalStorage());
-  const [isEdit, setIsEdit] = useState(false);
-  const [newText, setNewText] = useState(null);
+  }
 
   useEffect(() => {
     localStorage.setItem("todos", JSON.stringify(todos));

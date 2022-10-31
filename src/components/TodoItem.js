@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import {
   MdCheckBoxOutlineBlank,
   MdCheckBox,
@@ -12,13 +12,7 @@ const TodoItemBox = styled.div`
   display: flex;
   align-items: center;
   margin-bottom: 1.3rem;
-
-  ${(props) =>
-    props.important &&
-    css`
-      order: -1;
-      font-weight: 600;
-    `}
+  ${({ important }) => important && `font-weight: 600;`}
 
   .checkBox {
     cursor: pointer;
