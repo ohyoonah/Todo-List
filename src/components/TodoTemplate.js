@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useEffect } from "react";
 import styled, { css } from "styled-components";
 import TodoHead from "./TodoHead";
 import TodoInsert from "./TodoInsert";
@@ -48,17 +48,14 @@ const TodoTemplate = () => {
     setNewText(todo);
   };
 
-  const nextId = useRef(0);
-
   const onInsert = (text) => {
     const todo = {
-      id: nextId.current,
+      id: Date.now(),
       text,
       checked: false,
       important: false,
     };
     setTodos(todos.concat(todo));
-    nextId.current += 1;
   };
 
   const onToggle = (id) => {
