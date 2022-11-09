@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { useDispatch } from "react-redux";
 import {
   MdCheckBoxOutlineBlank,
   MdCheckBox,
@@ -7,6 +8,7 @@ import {
   MdOutlineStar,
   MdModeEditOutline,
 } from "react-icons/md";
+import { checked, important, remove } from "../modules/todoSlice";
 
 const TodoItemBox = styled.div`
   display: flex;
@@ -63,44 +65,46 @@ const TodoItemRemove = styled.div`
   color: var(--light-red);
 `;
 
-const TodoItem = ({
-  onChangeSelectedTodo,
-  todo,
-  onRemove,
-  onToggle,
-  onImportant,
-  setIsEdit,
-}) => {
-  const { id, text, checked, important } = todo;
+const TodoItem = ({ todolist, index }) => {
+  const dispatch = useDispatch();
 
   return (
-    <TodoItemBox important={important}>
-      <div className="checkBox" onClick={() => onToggle(id)}>
-        {checked ? (
+    <TodoItemBox important={todolist[index].important}>
+      <div
+        className="checkBox"
+        onClick={() => dispatch(checked(todolist[index].id))}
+      >
+        {todolist[index].checked ? (
           <>
             <MdCheckBox className="check" />
-            <div className="itemCheckText">{text}</div>
+            <div className="itemCheckText">{todolist[index].text}</div>
           </>
         ) : (
           <>
             <MdCheckBoxOutlineBlank />
-            <div className="itemText">{text}</div>
+            <div className="itemText">{todolist[index].text}</div>
           </>
         )}
       </div>
-      <TodoImportant onClick={() => onImportant(id)}>
-        {important ? <MdOutlineStar /> : <MdOutlineStarOutline />}
+      <TodoImportant onClick={() => dispatch(important(todolist[index].id))}>
+        {todolist[index].important ? (
+          <MdOutlineStar />
+        ) : (
+          <MdOutlineStarOutline />
+        )}
       </TodoImportant>
       <TodoItemEdit
-        onClick={() => {
-          onChangeSelectedTodo(todo);
-          setIsEdit(true);
-        }}
+      // onClick={() => {
+      //   onChangeSelectedTodo(todo);
+      //   setIsEdit(true);
+      // }}
       >
         <MdModeEditOutline />
       </TodoItemEdit>
       <TodoItemRemove>
-        <MdRemoveCircleOutline onClick={() => onRemove(id)} />
+        <MdRemoveCircleOutline
+          onClick={() => dispatch(remove(todolist[index].id))}
+        />
       </TodoItemRemove>
     </TodoItemBox>
   );

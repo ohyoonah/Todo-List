@@ -4,6 +4,7 @@ import TodoHead from "./TodoHead";
 import TodoInsert from "./TodoInsert";
 import TodoList from "./TodoList";
 import TodoEdit from "./TodoEdit";
+import { useSelector } from "react-redux";
 
 const TodoTemplateBox = styled.div`
   width: 512px;
@@ -27,81 +28,51 @@ const TodoMainStyle = styled.div`
 `;
 
 const TodoTemplate = () => {
-  const [todos, setTodos] = useState(getLocalStorage());
+  // const [todos, setTodos] = useState(getLocalStorage());
+  // const [isEdit, setIsEdit] = useState(false);
+  // const [newText, setNewText] = useState(null);
+
+  // function getLocalStorage() {
+  //   let todos = localStorage.getItem("todos");
+  //   if (todos) {
+  //     return (todos = JSON.parse(localStorage.getItem("todos")));
+  //   } else {
+  //     return [];
+  //   }
+  // }
+
+  // useEffect(() => {
+  //   localStorage.setItem("todos", JSON.stringify(todos));
+  // }, [todos]);
+
+  // const onChangeSelectedTodo = (todo) => {
+  //   setNewText(todo);
+  // };
+
+  // const onUpdate = (id, text) => {
+  //   setTodos(todos.map((todo) => (todo.id === id ? { ...todo, text } : todo)));
+  //   setIsEdit(false);
+  // };
+
+  const todolist = useSelector((state) => state.todo);
   const [isEdit, setIsEdit] = useState(false);
-  const [newText, setNewText] = useState(null);
 
-  function getLocalStorage() {
-    let todos = localStorage.getItem("todos");
-    if (todos) {
-      return (todos = JSON.parse(localStorage.getItem("todos")));
-    } else {
-      return [];
-    }
-  }
-
-  useEffect(() => {
-    localStorage.setItem("todos", JSON.stringify(todos));
-  }, [todos]);
-
-  const onChangeSelectedTodo = (todo) => {
-    setNewText(todo);
-  };
-
-  const onInsert = (text) => {
-    const todo = {
-      id: Date.now(),
-      text,
-      checked: false,
-      important: false,
-    };
-    setTodos(todos.concat(todo));
-  };
-
-  const onToggle = (id) => {
-    setTodos(
-      todos.map((todo) =>
-        todo.id === id ? { ...todo, checked: !todo.checked } : todo
-      )
-    );
-  };
-
-  const onRemove = (id) => {
-    setTodos(todos.filter((todo) => todo.id !== id));
-  };
-
-  const onImportant = (id) => {
-    setTodos(
-      todos.map((todo) =>
-        todo.id === id ? { ...todo, important: !todo.important } : todo
-      )
-    );
-  };
-
-  const onUpdate = (id, text) => {
-    setTodos(todos.map((todo) => (todo.id === id ? { ...todo, text } : todo)));
-    setIsEdit(false);
-  };
-
-  const task = todos.filter((todo) => !todo.checked).length;
+  const task = todolist.filter((todo) => !todo.checked).length;
 
   return (
     <TodoTemplateBox>
-      <TodoMainStyle isEdit={isEdit}>
+      <TodoMainStyle>
         <TodoHead task={task} />
-        <TodoInsert onInsert={onInsert} />
-        <TodoList
-          todos={todos}
-          onRemove={onRemove}
-          onToggle={onToggle}
-          onImportant={onImportant}
-          setIsEdit={setIsEdit}
-          onChangeSelectedTodo={onChangeSelectedTodo}
-        />
+        <TodoInsert />
+        <TodoList todolist={todolist} />
+        {isEdit && (
+          <TodoEdit
+            setIsEdit={setIsEdit}
+            // newText={newText}
+            // onUpdate={onUpdate}
+          />
+        )}
       </TodoMainStyle>
-      {isEdit && (
-        <TodoEdit setIsEdit={setIsEdit} newText={newText} onUpdate={onUpdate} />
-      )}
     </TodoTemplateBox>
   );
 };
