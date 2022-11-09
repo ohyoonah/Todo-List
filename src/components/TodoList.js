@@ -8,11 +8,18 @@ const TodoListBox = styled.div`
   padding: 0 3rem;
 `;
 
-const TodoList = ({ todolist }) => {
+const TodoList = ({ todolist, onChangeSelectedTodo, setIsEdit, newText }) => {
   return (
     <TodoListBox>
       {todolist.map((todo, index) => (
-        <TodoItem key={todo.id} todolist={todolist} index={index} />
+        <TodoItem
+          key={todo.id}
+          todo={todo}
+          onChangeSelectedTodo={onChangeSelectedTodo}
+          index={index}
+          setIsEdit={setIsEdit}
+          newText={newText}
+        />
       ))}
     </TodoListBox>
   );

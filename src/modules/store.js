@@ -13,7 +13,7 @@ import todoSlice from "./todoSlice";
 
 const persistConfig = {
   key: "root",
-  storage: storage,
+  storage,
   whitelist: ["todo"],
 };
 

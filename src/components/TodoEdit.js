@@ -1,5 +1,7 @@
-import { useState } from "react";
+import { useState, useCallback } from "react";
+import { useDispatch } from "react-redux";
 import styled from "styled-components";
+import { onUpdate } from "../modules/todoSlice";
 
 const EditForm = styled.form`
   background: white;
@@ -73,17 +75,22 @@ const EditForm = styled.form`
   }
 `;
 
-const TodoEdit = ({ setIsEdit, newText, onUpdate }) => {
+const TodoEdit = ({ setIsEdit, newText }) => {
   const [inputValue, setInputValue] = useState(newText.text);
+  const dispatch = useDispatch();
 
-  const onChange = (e) => {
+  const onChange = useCallback((e) => {
     setInputValue(e.target.value);
-  };
+  }, []);
 
-  const onSubmit = (e) => {
-    e.preventDefault();
-    onUpdate(newText.id, inputValue);
-  };
+  const onSubmit = useCallback(
+    (e) => {
+      e.preventDefault();
+      dispatch(onUpdate({ id: newText.id, text: inputValue }));
+      setIsEdit(false);
+    },
+    [dispatch, inputValue, newText.id, setIsEdit]
+  );
 
   return (
     <EditForm onSubmit={onSubmit}>
@@ -93,7 +100,11 @@ const TodoEdit = ({ setIsEdit, newText, onUpdate }) => {
         <button className="updateButton" type="submit">
           확인
         </button>
-        <button className="closeButton" onClick={() => setIsEdit(false)}>
+        <button
+          className="closeButton"
+          type="button"
+          onClick={() => setIsEdit(false)}
+        >
           닫기
         </button>
       </div>

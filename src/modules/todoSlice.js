@@ -1,34 +1,38 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = [];
+const initialState = { todo: [] };
 
 export const todoSlice = createSlice({
   name: "todoList",
   initialState,
   reducers: {
-    insert: (state, action) => {
+    onInsert: (state, { payload: text }) => {
       state.push({
         id: Date.now(),
-        text: action.payload,
+        text,
         checked: false,
         important: false,
       });
     },
-    remove: (state, { payload: id }) => {
+    onRemove: (state, { payload: id }) => {
       return state.filter((todo) => todo.id !== id);
     },
-    checked: (state, { payload: id }) => {
+    onChecked: (state, { payload: id }) => {
       return state.map((todo) =>
         todo.id === id ? { ...todo, checked: !todo.checked } : todo
       );
     },
-    important: (state, { payload: id }) => {
+    onImportant: (state, { payload: id }) => {
       return state.map((todo) =>
         todo.id === id ? { ...todo, important: !todo.important } : todo
       );
     },
+    onUpdate: (state, { payload: id, text }) => {
+      return state.map((todo) => (todo.id === id ? { ...todo, text } : todo));
+    },
   },
 });
 
-export const { insert, remove, checked, important } = todoSlice.actions;
+export const { onInsert, onRemove, onChecked, onImportant, onUpdate } =
+  todoSlice.actions;
 export default todoSlice.reducer;

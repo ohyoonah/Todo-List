@@ -2,7 +2,7 @@ import { useState, useCallback } from "react";
 import { useDispatch } from "react-redux";
 import { MdAdd } from "react-icons/md";
 import styled, { css } from "styled-components";
-import { insert } from "../modules/todoSlice";
+import { onInsert } from "../modules/todoSlice";
 
 const InsertForm = styled.form`
   display: flex;
@@ -69,7 +69,7 @@ const TodoInsert = () => {
     (e) => {
       e.preventDefault();
       if (!inputValue) return;
-      dispatch(insert(inputValue));
+      dispatch(onInsert(inputValue));
       setInputValue("");
     },
     [inputValue, dispatch]

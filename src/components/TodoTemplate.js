@@ -1,10 +1,10 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import { useSelector } from "react-redux";
 import styled, { css } from "styled-components";
 import TodoHead from "./TodoHead";
 import TodoInsert from "./TodoInsert";
 import TodoList from "./TodoList";
 import TodoEdit from "./TodoEdit";
-import { useSelector } from "react-redux";
 
 const TodoTemplateBox = styled.div`
   width: 512px;
@@ -28,38 +28,30 @@ const TodoMainStyle = styled.div`
 `;
 
 const TodoTemplate = () => {
-  // const [todos, setTodos] = useState(getLocalStorage());
-  // const [isEdit, setIsEdit] = useState(false);
-  // const [newText, setNewText] = useState(null);
-
-  // const onChangeSelectedTodo = (todo) => {
-  //   setNewText(todo);
-  // };
-
-  // const onUpdate = (id, text) => {
-  //   setTodos(todos.map((todo) => (todo.id === id ? { ...todo, text } : todo)));
-  //   setIsEdit(false);
-  // };
-
-  const todolist = useSelector((state) => state.todo);
+  const todolist = useSelector(({ todo }) => todo);
   const [isEdit, setIsEdit] = useState(false);
+  const [newText, setNewText] = useState(null);
 
-  const task = todolist.filter((todo) => !todo.checked).length;
+  const onChangeSelectedTodo = (todo) => {
+    setNewText(todo);
+  };
 
   return (
     <TodoTemplateBox>
-      <TodoMainStyle>
-        <TodoHead task={task} />
+      <TodoMainStyle isEdit={isEdit}>
+        <TodoHead todolist={todolist} />
         <TodoInsert />
-        <TodoList todolist={todolist} />
-        {isEdit && (
-          <TodoEdit
-            setIsEdit={setIsEdit}
-            // newText={newText}
-            // onUpdate={onUpdate}
-          />
-        )}
+        <TodoList
+          todolist={todolist}
+          onChangeSelectedTodo={onChangeSelectedTodo}
+          setIsEdit={setIsEdit}
+          isEdit={isEdit}
+          newText={newText}
+        />
       </TodoMainStyle>
+      {isEdit && (
+        <TodoEdit setIsEdit={setIsEdit} newText={newText} todolist={todolist} />
+      )}
     </TodoTemplateBox>
   );
 };

@@ -26,8 +26,9 @@ const TodoHeadBox = styled.div`
   }
 `;
 
-const TodoHead = ({ task }) => {
+const TodoHead = ({ todolist }) => {
   const today = new Date();
+  const task = todolist.filter((todo) => !todo.checked).length;
 
   const dateString = today.toLocaleDateString("ko-KR", {
     year: "numeric",
