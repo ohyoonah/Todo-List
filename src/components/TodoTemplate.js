@@ -32,19 +32,6 @@ const TodoTemplate = () => {
   // const [isEdit, setIsEdit] = useState(false);
   // const [newText, setNewText] = useState(null);
 
-  // function getLocalStorage() {
-  //   let todos = localStorage.getItem("todos");
-  //   if (todos) {
-  //     return (todos = JSON.parse(localStorage.getItem("todos")));
-  //   } else {
-  //     return [];
-  //   }
-  // }
-
-  // useEffect(() => {
-  //   localStorage.setItem("todos", JSON.stringify(todos));
-  // }, [todos]);
-
   // const onChangeSelectedTodo = (todo) => {
   //   setNewText(todo);
   // };
