@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useSelector } from "react-redux";
 import styled, { css } from "styled-components";
 import TodoHead from "./TodoHead";
 import TodoInsert from "./TodoInsert";
@@ -28,7 +27,6 @@ const TodoMainStyle = styled.div`
 `;
 
 const TodoTemplate = () => {
-  const todolist = useSelector(({ todo }) => todo);
   const [isEdit, setIsEdit] = useState(false);
   const [newText, setNewText] = useState(null);
 
@@ -39,19 +37,16 @@ const TodoTemplate = () => {
   return (
     <TodoTemplateBox>
       <TodoMainStyle isEdit={isEdit}>
-        <TodoHead todolist={todolist} />
+        <TodoHead />
         <TodoInsert />
         <TodoList
-          todolist={todolist}
           onChangeSelectedTodo={onChangeSelectedTodo}
           setIsEdit={setIsEdit}
           isEdit={isEdit}
           newText={newText}
         />
       </TodoMainStyle>
-      {isEdit && (
-        <TodoEdit setIsEdit={setIsEdit} newText={newText} todolist={todolist} />
-      )}
+      {isEdit && <TodoEdit setIsEdit={setIsEdit} newText={newText} />}
     </TodoTemplateBox>
   );
 };

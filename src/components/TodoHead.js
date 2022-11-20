@@ -1,3 +1,4 @@
+import { useSelector } from "react-redux";
 import styled from "styled-components";
 
 const TodoHeadBox = styled.div`
@@ -26,7 +27,8 @@ const TodoHeadBox = styled.div`
   }
 `;
 
-const TodoHead = ({ todolist }) => {
+const TodoHead = () => {
+  const todolist = useSelector(({ todo }) => todo);
   const today = new Date();
   const task = todolist.filter((todo) => !todo.checked).length;
 

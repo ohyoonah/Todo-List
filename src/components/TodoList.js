@@ -1,3 +1,4 @@
+import { useSelector } from "react-redux";
 import styled from "styled-components";
 import TodoItem from "./TodoItem.js";
 
@@ -8,7 +9,8 @@ const TodoListBox = styled.div`
   padding: 0 3rem;
 `;
 
-const TodoList = ({ todolist, onChangeSelectedTodo, setIsEdit, newText }) => {
+const TodoList = ({ onChangeSelectedTodo, setIsEdit }) => {
+  const todolist = useSelector(({ todo }) => todo);
   return (
     <TodoListBox>
       {todolist.map((todo, index) => (
@@ -18,7 +20,6 @@ const TodoList = ({ todolist, onChangeSelectedTodo, setIsEdit, newText }) => {
           onChangeSelectedTodo={onChangeSelectedTodo}
           index={index}
           setIsEdit={setIsEdit}
-          newText={newText}
         />
       ))}
     </TodoListBox>

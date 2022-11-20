@@ -1,6 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = { todo: [] };
+const initialState = {
+  todo: [],
+};
 
 export const todoSlice = createSlice({
   name: "todoList",
@@ -27,7 +29,8 @@ export const todoSlice = createSlice({
         todo.id === id ? { ...todo, important: !todo.important } : todo
       );
     },
-    onUpdate: (state, { payload: id, text }) => {
+    onUpdate: (state, actions) => {
+      const { id, text } = actions.payload;
       return state.map((todo) => (todo.id === id ? { ...todo, text } : todo));
     },
   },
