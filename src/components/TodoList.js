@@ -11,6 +11,7 @@ const TodoListBox = styled.div`
 
 const TodoList = ({ onChangeSelectedTodo, setIsEdit }) => {
   const todolist = useSelector(({ todo }) => todo);
+
   return (
     <TodoListBox>
       {todolist.map((todo, index) => (
